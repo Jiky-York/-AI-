@@ -4,7 +4,6 @@ import {
   FileSpreadsheet,
   CheckCircle2,
   AlertCircle,
-  XLSX,
   Download,
   Loader2
 } from 'lucide-react'
