@@ -175,7 +175,7 @@ function DataImport() {
           <div className="mt-6 animate-fade-in">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-medium flex items-center gap-2">
-                <XLSX className="w-5 h-5 text-success" />
+                <FileSpreadsheet className="w-5 h-5 text-success" />
                 文件预览
               </h3>
               <div className="flex items-center gap-4 text-sm text-text-secondary">
