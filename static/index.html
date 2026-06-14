@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>项目管理与经营分析AI助手</title>
+  <link rel="stylesheet" href="/static/app.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-logo">📊</div>
+      <div>
+        <div class="brand-title">项目管理</div>
+        <div class="brand-sub">AI 助手</div>
+      </div>
+    </div>
+    <nav class="menu" id="menu">
+      <a class="menu-item" data-page="dashboard"><span>🏠</span>总览</a>
+      <a class="menu-item" data-page="risk"><span>⚠️</span>风险看板</a>
+      <a class="menu-item" data-page="report"><span>📝</span>月报生成</a>
+      <a class="menu-item" data-page="review"><span>✅</span>人工复核</a>
+      <a class="menu-item" data-page="chat"><span>💬</span>AI 对话</a>
+      <a class="menu-item" data-page="import"><span>📥</span>数据导入</a>
+    </nav>
+    <div class="sidebar-foot glass">
+      <div class="foot-status">● 服务运行中</div>
+      <div class="foot-sub" id="project-count">加载中…</div>
+    </div>
+  </aside>
+
+  <main class="content">
+    <!-- =========== 总览 =========== -->
+    <section class="page" data-page="dashboard">
+      <header class="page-header">
+        <h1>项目管理总览</h1>
+        <p>实时监控项目风险，智能生成经营分析报告</p>
+      </header>
+
+      <div class="card-row" id="stat-cards"></div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h2>高风险项目</h2>
+          <div id="high-risk-list" class="project-list"></div>
+        </div>
+        <div class="card">
+          <h2>最近动态</h2>
+          <ul class="activity" id="activity"></ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>快捷操作</h2>
+        <div class="quick-actions">
+          <button class="action" data-go="report">
+            <span class="ico">📝</span>
+            <div><strong>生成月报</strong><em>AI 智能生成诊断报告</em></div>
+          </button>
+          <button class="action" data-go="chat">
+            <span class="ico">💬</span>
+            <div><strong>AI 对话</strong><em>查询项目信息，获取建议</em></div>
+          </button>
+          <button class="action" data-go="import">
+            <span class="ico">📥</span>
+            <div><strong>导入数据</strong><em>上传 Excel / CSV</em></div>
+          </button>
+          <button class="action" data-go="risk">
+            <span class="ico">📊</span>
+            <div><strong>风险看板</strong><em>查看所有项目风险指标</em></div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========== 风险看板 =========== -->
+    <section class="page hidden" data-page="risk">
+      <header class="page-header">
+        <h1>项目风险看板</h1>
+        <p>多维度指标可视化，优先级排序一目了然</p>
+      </header>
+
+      <div class="card-row" id="risk-metrics"></div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h2>成本使用率（%）</h2>
+          <div id="chart-cost" class="bar-chart"></div>
+        </div>
+        <div class="card">
+          <h2>周期使用率（%）</h2>
+          <div id="chart-cycle" class="bar-chart"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h2>项目明细</h2>
+          <div class="filters">
+            <select id="filter-risk">
+              <option value="all">全部风险等级</option>
+              <option value="高">高</option>
+              <option value="中">中</option>
+              <option value="低">低</option>
+            </select>
+            <select id="sort-by">
+              <option value="risk">按综合风险</option>
+              <option value="cost">按成本使用率</option>
+              <option value="cycle">按周期使用率</option>
+              <option value="quality">按质量问题数</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>编号</th><th>项目名称</th><th>类型</th><th>阶段</th>
+                <th>成本%</th><th>周期%</th><th>质量问题</th><th>满意度</th>
+                <th>风险</th>
+              </tr>
+            </thead>
+            <tbody id="risk-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========== 月报生成 =========== -->
+    <section class="page hidden" data-page="report">
+      <header class="page-header">
+        <h1>月报生成器</h1>
+        <p>AI 智能生成项目管理诊断报告</p>
+      </header>
+
+      <div class="card">
+        <h2>生成配置</h2>
+        <div class="grid-form">
+          <label>
+            <span>报告类型</span>
+            <select id="report-type">
+              <option value="monthly">月度诊断报告</option>
+              <option value="weekly">周报</option>
+              <option value="quarterly">季度报告</option>
+            </select>
+          </label>
+          <label class="span-2">
+            <span>选择项目</span>
+            <div class="chip-group" id="project-chips"></div>
+          </label>
+          <div class="span-2">
+            <button class="btn btn-primary" id="gen-report">🚀 生成报告</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card hidden" id="report-result">
+        <div class="card-top">
+          <h2>报告预览</h2>
+          <div class="btn-row">
+            <button class="btn btn-secondary" id="copy-report">📋 复制</button>
+            <button class="btn btn-primary" id="download-report">⬇️ 下载 MD</button>
+          </div>
+        </div>
+        <pre id="report-content" class="report-md"></pre>
+      </div>
+    </section>
+
+    <!-- =========== 人工复核 =========== -->
+    <section class="page hidden" data-page="review">
+      <header class="page-header">
+        <h1>人工复核管理</h1>
+        <p>管理需要人工确认的关键复核点</p>
+      </header>
+
+      <div class="card-row" id="review-stats"></div>
+
+      <div class="card">
+        <div class="card-top">
+          <h2>复核项列表</h2>
+          <select id="review-filter">
+            <option value="all">全部</option>
+            <option value="pending">待处理</option>
+            <option value="in_progress">进行中</option>
+            <option value="completed">已完成</option>
+          </select>
+        </div>
+        <div id="review-list" class="review-list"></div>
+      </div>
+    </section>
+
+    <!-- =========== AI 对话 =========== -->
+    <section class="page hidden" data-page="chat">
+      <header class="page-header">
+        <h1>AI 对话</h1>
+        <p>智能问答，查询项目信息，获取建议</p>
+      </header>
+
+      <div class="grid-2">
+        <div class="card chat-card">
+          <div id="chat-log" class="chat-log">
+            <div class="chat-msg bot">
+              <div class="chat-avatar">🤖</div>
+              <div class="chat-bubble">您好！我是项目管理AI助手。您可以问我：<br>• P002项目的风险是什么？<br>• 哪些项目需要优先处理？<br>• 如何降低成本超支风险？</div>
+            </div>
+          </div>
+          <div class="chat-input-wrap">
+            <input type="text" id="chat-input" placeholder="输入问题，按回车发送…" />
+            <button class="btn btn-primary" id="chat-send">发送</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>快捷问题</h2>
+          <div class="quick-questions">
+            <button class="chip" data-q="P002项目的风险是什么？">P002项目风险？</button>
+            <button class="chip" data-q="哪些项目需要优先处理？">项目优先级</button>
+            <button class="chip" data-q="如何降低成本超支风险？">降低成本风险</button>
+            <button class="chip" data-q="生成项目管理诊断报告建议">生成报告</button>
+          </div>
+          <h2 style="margin-top:24px;">指标速查</h2>
+          <div id="ai-stats" class="chip-stats"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========== 数据导入 =========== -->
+    <section class="page hidden" data-page="import">
+      <header class="page-header">
+        <h1>数据导入</h1>
+        <p>上传 Excel / CSV 文件，批量导入项目数据</p>
+      </header>
+
+      <div class="card">
+        <h2>上传文件</h2>
+        <div id="drop-zone" class="drop-zone">
+          <input type="file" id="file-input" accept=".csv,.tsv,.txt" class="hidden" />
+          <div class="dz-ico">📥</div>
+          <div><strong>点击或拖拽</strong> CSV / TSV 文件到此处</div>
+          <div class="dz-hint">列字段：项目编号,项目名称,类型,阶段,预算(万),已发生成本(万),计划天数,已用天数,质量问题,满意度</div>
+        </div>
+        <div id="file-info" class="file-info hidden"></div>
+        <div id="import-preview" class="hidden">
+          <h3>预览（仅显示前 6 行）</h3>
+          <div class="table-wrap">
+            <table class="data-table" id="import-table"></table>
+          </div>
+          <button class="btn btn-primary" id="confirm-import">✅ 确认导入</button>
+        </div>
+        <div id="import-result" class="hidden import-result"></div>
+      </div>
+
+      <div class="card">
+        <h2>下载导入模板</h2>
+        <p class="text-muted">使用标准模板格式导入数据，确保字段匹配</p>
+        <button class="btn btn-secondary" id="download-template">⬇️ 下载 CSV 模板</button>
+      </div>
+    </section>
+
+    <footer class="app-foot">
+      <span>吉承宇 · 北京师范大学 · OPC复赛271号 · 项目管理与经营分析AI助手</span>
+    </footer>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
