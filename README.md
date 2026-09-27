@@ -2,6 +2,16 @@
 
 面向教育场景（作业批改、课件生成、教案写作）的大模型自动化评测平台，支持多厂商模型横向评测、LLM-as-Judge 自动打分、可视化报告输出。
 
+## 🚀 一键部署（公网可访问）
+
+点击下方按钮，自动部署到 Render 免费托管平台，获得公网访问链接（MOCK 演示模式，无需 API Key）：
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Jiky-York/-AI-&branch=edu-llm-eval)
+
+部署完成后，Render 会提供一个 `https://xxx.onrender.com` 链接，外部人员可直接访问。
+
+> 如需真实模型评测，在 Render 服务的 Environment 中填入各厂商 API Key，并将 `MOCK_MODE` 改为 `false`。
+
 ## 功能特性
 
 - 📊 **Benchmark 管理**：3 大教育场景，126 条评测用例（含参考答案 + Rubric）
