@@ -2,13 +2,21 @@
 
 面向教育场景（作业批改、课件生成、教案写作）的大模型自动化评测平台，支持多厂商模型横向评测、LLM-as-Judge 自动打分、可视化报告输出。
 
-## 🚀 一键部署（公网可访问）
+## 🚀 公网访问
 
-点击下方按钮，自动部署到 Render 免费托管平台，获得公网访问链接（MOCK 演示模式，无需 API Key）：
+### 在线演示（立即可访问）
+
+平台已部署到 GitHub Pages，外部人员可直接访问（MOCK 演示模式，基于真实评测数据）：
+
+👉 **https://jiky-york.github.io/-AI-/**
+
+### 一键部署到 Render（真实模型评测）
+
+点击下方按钮，自动部署到 Render 免费托管平台，获得独立公网链接：
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Jiky-York/-AI-&branch=edu-llm-eval)
 
-部署完成后，Render 会提供一个 `https://xxx.onrender.com` 链接，外部人员可直接访问。
+部署完成后，Render 会提供一个 `https://xxx.onrender.com` 链接。
 
 > 如需真实模型评测，在 Render 服务的 Environment 中填入各厂商 API Key，并将 `MOCK_MODE` 改为 `false`。
 
