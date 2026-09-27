@@ -1,0 +1,24 @@
+{
+  "name": "edu-llm-eval-frontend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "antd": "^5.21.0",
+    "@ant-design/icons": "^5.5.1",
+    "echarts": "^5.5.1",
+    "echarts-for-react": "^3.0.2",
+    "axios": "^1.7.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.8"
+  }
+}
