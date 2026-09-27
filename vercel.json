@@ -1,11 +1,1 @@
-{
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index" },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "functions": {
-    "api/index.py": {
-      "maxDuration": 60
-    }
-  }
-}
+ewogICIkc2NoZW1hIjogImh0dHBzOi8vb3BlbmFwaS52ZXJjZWwuc2gvdmVyY2VsLmpzb24iLAogICJyb290RGlyZWN0b3J5IjogImZyb250ZW5kIiwKICAiYnVpbGRDb21tYW5kIjogIlZJVEVfTU9DSz10cnVlIG5wbSBydW4gYnVpbGQgLS0gLS1vdXREaXIgZGlzdCIsCiAgIm91dHB1dERpcmVjdG9yeSI6ICJkaXN0IiwKICAiZnJhbWV3b3JrIjogInZpdGUiLAogICJpbnN0YWxsQ29tbWFuZCI6ICJucG0gaW5zdGFsbCIKfQo=
