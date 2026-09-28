@@ -1,6 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rootDirectory": "frontend",
   "buildCommand": "VITE_MOCK=true npm run build -- --outDir dist",
   "outputDirectory": "dist",
   "framework": "vite",
